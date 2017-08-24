@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebImagePreviewVC">
+            <connections>
+                <outlet property="btnMenu" destination="W4s-BM-Yuo" id="5HV-BQ-RK7"/>
+                <outlet property="collectMain" destination="mNv-mS-P4W" id="B7z-1I-EJk"/>
+                <outlet property="lblNum" destination="ljg-rJ-KNH" id="sYp-yM-X8j"/>
+                <outlet property="view" destination="2l5-ae-zje" id="0th-41-waq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2l5-ae-zje">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mNv-mS-P4W">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="jR6-P0-ltD">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GSm-kn-LjZ"/>
+                        <outlet property="delegate" destination="-1" id="T2h-xk-eOm"/>
+                    </connections>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4s-BM-Yuo">
+                    <rect key="frame" x="310" y="20" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="FkO-iG-qli"/>
+                        <constraint firstAttribute="height" constant="30" id="rK8-C2-LtA"/>
+                    </constraints>
+                    <state key="normal" image="dianddd"/>
+                    <connections>
+                        <action selector="btnMenuAction:" destination="-1" eventType="touchUpInside" id="rVT-j2-Jty"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljg-rJ-KNH">
+                    <rect key="frame" x="147.5" y="20" width="80" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="3W2-1r-8pE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="mNv-mS-P4W" secondAttribute="trailing" id="82R-Vb-ZrQ"/>
+                <constraint firstItem="ljg-rJ-KNH" firstAttribute="height" secondItem="W4s-BM-Yuo" secondAttribute="height" id="AB8-hb-3WT"/>
+                <constraint firstAttribute="bottom" secondItem="mNv-mS-P4W" secondAttribute="bottom" id="Ak6-Tl-oIO"/>
+                <constraint firstItem="ljg-rJ-KNH" firstAttribute="centerX" secondItem="mNv-mS-P4W" secondAttribute="centerX" id="CHA-W0-XQz"/>
+                <constraint firstAttribute="trailing" secondItem="W4s-BM-Yuo" secondAttribute="trailing" constant="15" id="Ifi-hb-nGQ"/>
+                <constraint firstItem="mNv-mS-P4W" firstAttribute="top" secondItem="2l5-ae-zje" secondAttribute="top" id="LUq-wm-sFU"/>
+                <constraint firstItem="ljg-rJ-KNH" firstAttribute="top" secondItem="W4s-BM-Yuo" secondAttribute="top" id="RjS-vD-erS"/>
+                <constraint firstItem="W4s-BM-Yuo" firstAttribute="top" secondItem="2l5-ae-zje" secondAttribute="top" constant="20" id="k93-1C-wcg"/>
+                <constraint firstItem="mNv-mS-P4W" firstAttribute="leading" secondItem="2l5-ae-zje" secondAttribute="leading" id="v6H-y6-D1l"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="dianddd" width="23" height="23"/>
+    </resources>
+</document>

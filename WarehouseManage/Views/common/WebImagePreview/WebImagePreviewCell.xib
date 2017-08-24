@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WebImagePreviewCell" id="JUl-y5-nU0" customClass="WebImagePreviewCell">
+            <rect key="frame" x="0.0" y="0.0" width="413" height="490"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="413" height="490"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-hG-qzB">
+                        <rect key="frame" x="0.0" y="0.0" width="413" height="490"/>
+                        <connections>
+                            <outlet property="delegate" destination="JUl-y5-nU0" id="B9w-NW-r0j"/>
+                        </connections>
+                    </scrollView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9g-Pa-cWO">
+                        <rect key="frame" x="131.5" y="185" width="150" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="GEZ-rI-2fo"/>
+                            <constraint firstAttribute="width" constant="150" id="ypr-8u-eNa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="42" minY="0.0" maxX="0.0" maxY="37"/>
+                        <state key="normal" title="加载失败,点击重新加载" image="tulie"/>
+                        <connections>
+                            <action selector="reloadAction:" destination="JUl-y5-nU0" eventType="touchUpInside" id="6fs-tG-Id5"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="zs6-hG-qzB" firstAttribute="leading" secondItem="JUl-y5-nU0" secondAttribute="leading" id="Qn4-zu-tTV"/>
+                <constraint firstAttribute="trailing" secondItem="zs6-hG-qzB" secondAttribute="trailing" id="eC0-xu-pQj"/>
+                <constraint firstItem="t9g-Pa-cWO" firstAttribute="centerX" secondItem="JUl-y5-nU0" secondAttribute="centerX" id="k8d-qT-eWj"/>
+                <constraint firstItem="zs6-hG-qzB" firstAttribute="top" secondItem="JUl-y5-nU0" secondAttribute="top" id="pSM-Gs-PwY"/>
+                <constraint firstAttribute="bottom" secondItem="zs6-hG-qzB" secondAttribute="bottom" id="qg2-UP-ZNb"/>
+                <constraint firstItem="t9g-Pa-cWO" firstAttribute="centerY" secondItem="JUl-y5-nU0" secondAttribute="centerY" id="tCz-15-NxX"/>
+            </constraints>
+            <size key="customSize" width="413" height="490"/>
+            <connections>
+                <outlet property="btnReload" destination="t9g-Pa-cWO" id="phF-qP-FMy"/>
+                <outlet property="scroll" destination="zs6-hG-qzB" id="MHb-nA-CDi"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="231"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="tulie" width="60" height="49"/>
+    </resources>
+</document>
