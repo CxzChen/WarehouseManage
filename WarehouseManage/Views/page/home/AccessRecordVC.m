@@ -50,6 +50,12 @@
     UIView *vSp2 = [[UIView alloc] initWithFrame:CGRectMake(0, 504, APP_W, 0.5)];
     vSp2.backgroundColor = RGBHex(kColorGray206);
     [vScrollContent addSubview:vSp];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(55, 104, (APP_W - 100)/3, 30)];
+    lbl.text = @"原库存";
+    lbl.font = fontSystem(kFontS28);
+    lbl.textAlignment = NSTextAlignmentCenter;
+    [vScrollContent addSubview:lbl];
 }
 -(void)UIGlobal
 {
@@ -67,11 +73,7 @@
     lblName.textColor = RGBHex(kColorGray204);
     
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(55, 104, (APP_W - 100)/3, 30)];
-    lbl.text = @"原库存";
-    lbl.font = fontSystem(kFontS28);
-    lbl.textAlignment = NSTextAlignmentCenter;
-    [vScrollContent addSubview:lbl];
+    
     
     
     UIButton *btnOk = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -112,6 +114,7 @@
     txt.textAlignment = NSTextAlignmentCenter;
     txt.layer.borderWidth = 0.5;
     txt.layer.cornerRadius = 3;
+    txt.layer.borderColor = RGBHex(kColorGray204).CGColor;
     txt.clipsToBounds = YES;
     txt.tag = 100+tag;
     txt.font=fontSystem(kFontS28);
@@ -132,10 +135,11 @@
     lblNew.text = @"现库存";
     lblNew.textAlignment = NSTextAlignmentCenter;
     lblNew.font = fontSystem(kFontS28);
-    lblNew.textColor = RGBHex(kColorGray203);
+    lblNew.textColor = RGBHex(kColorGray204);
     lblNew.layer.borderWidth = 0.5;
     lblNew.layer.cornerRadius = 3;
     lblNew.clipsToBounds = YES;
+    lblNew.layer.borderColor = RGBHex(kColorGray204).CGColor;
     lblNew.tag = 1000+tag;
     [v addSubview:lblNew];
 }
