@@ -97,12 +97,18 @@
 //        [self mainInit];
 //        
 //        
-//        //        [QGLOBAL checkAuthResult:^(BOOL enabled) {
-//        //
-//        //
-//        //        }];
 //    }
-    [self loginInit];
+    
+    [QGLOBAL checkAuthResult:^(BOOL enabled) {
+        if (enabled) {
+            [self mainInit];
+        }else{
+            [self loginInit];
+        }
+        
+    }];
+
+    
     //判断是不是点击唤起的app
 //    [self checkOpenAppStyle:launchOptions];
 }

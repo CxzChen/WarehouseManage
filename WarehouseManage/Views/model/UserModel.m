@@ -9,15 +9,29 @@
 #import "UserModel.h"
 
 @implementation UserModel
-
++(JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc]initWithDictionary:@{@"_id":@"uid"}];
+}
 @end
 @implementation AuthModel
 
 +(JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc]initWithDictionary:@{@"id":@"authid"}];
+    return [[JSONKeyMapper alloc]initWithDictionary:@{@"token":@"vso_token"}];
 }
 @end
+
+@implementation CommldityInfo
+
+@end
+@implementation CommodityListModel
++(JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc]initWithDictionary:@{@"in":@"warehousing",@"out":@"shipments",@"_id":@"uid"}];
+}
+@end
+
 @implementation GuideModel
 
 @end

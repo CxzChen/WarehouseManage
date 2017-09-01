@@ -7,7 +7,7 @@
 //
 
 #import "AddVC.h"
-
+#import "LoginAPI.h"
 @interface AddVC ()
 {
     IBOutlet UIView *vScrollContent;
@@ -77,7 +77,10 @@
     txt.textColor=RGBHex(kColorGray204);
     txt.delegate=self;
     txt.returnKeyType=UIReturnKeyDone;
-    txt.keyboardType = UIKeyboardTypeNumberPad;
+    if (tag != 0) {
+        txt.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    
     txt.placeholder = placeholder;
     [v addSubview:txt];
     
@@ -85,7 +88,31 @@
 
 - (void)okAction:(UIButton *)sender
 {
-    
+    [self showLoading];
+    UITextField *txt = (UITextField *)[self.view viewWithTag:100];
+    if (StrIsEmpty(txt.text)) {
+        [self didLoad];
+        [self showText:@"请填写商品名"];
+    }else{
+        NSMutableArray *sizeArr = [NSMutableArray array];
+        for (int i = 1; i < 9; i++) {
+            UITextField *txt = (UITextField *)[self.view viewWithTag:100+i];
+            if (StrIsEmpty(txt.text)) {
+                txt.text = @"0";
+            }
+            [sizeArr addObject:txt.text];
+        }
+        [LoginAPI addCommodityName:txt.text sizeArr:sizeArr success:^(UserModel *model) {
+            [self didLoad];
+            [self showText:@"添加成功"];
+            [self performSelector:@selector(popVCAction:) withObject:nil afterDelay:0.5];
+            
+//            [self popVCAction:nil];
+        } failure:^(NetError *err) {
+            [self didLoad];
+            [self showText:@"添加失败,请重试"];
+        }];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

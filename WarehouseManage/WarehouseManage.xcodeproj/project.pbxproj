@@ -229,6 +229,7 @@
 		28C8B8C71F4A7D580017A76A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C8B8C61F4A7D580017A76A /* Security.framework */; };
 		28C8B8C91F4A7D640017A76A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C8B8C81F4A7D640017A76A /* CoreGraphics.framework */; };
 		28C8B8CB1F4A7D840017A76A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C8B8CA1F4A7D840017A76A /* CoreTelephony.framework */; };
+		28CFF1311F568C0E00160FFC /* LoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CFF1301F568C0E00160FFC /* LoginAPI.m */; };
 		28F5EC861F4BC19E00079B0B /* AddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F5EC841F4BC19E00079B0B /* AddVC.m */; };
 		28F5EC871F4BC19E00079B0B /* AddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F5EC851F4BC19E00079B0B /* AddVC.xib */; };
 		28F5EC8B1F4BC7C400079B0B /* StatisticalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F5EC891F4BC7C400079B0B /* StatisticalVC.m */; };
@@ -671,6 +672,9 @@
 		28C8B8C61F4A7D580017A76A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		28C8B8C81F4A7D640017A76A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28C8B8CA1F4A7D840017A76A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		28CFF12F1F568C0E00160FFC /* LoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAPI.h; sourceTree = "<group>"; };
+		28CFF1301F568C0E00160FFC /* LoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAPI.m; sourceTree = "<group>"; };
+		28CFF1321F568C1800160FFC /* API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		28F5EC831F4BC19E00079B0B /* AddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVC.h; sourceTree = "<group>"; };
 		28F5EC841F4BC19E00079B0B /* AddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddVC.m; sourceTree = "<group>"; };
 		28F5EC851F4BC19E00079B0B /* AddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddVC.xib; sourceTree = "<group>"; };
@@ -822,6 +826,9 @@
 			children = (
 				28C8B61F1F4A7B5C0017A76A /* OtherAPI.h */,
 				28C8B6201F4A7B5C0017A76A /* OtherAPI.m */,
+				28CFF12F1F568C0E00160FFC /* LoginAPI.h */,
+				28CFF1301F568C0E00160FFC /* LoginAPI.m */,
+				28CFF1321F568C1800160FFC /* API.h */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1940,6 +1947,7 @@
 				28C8B8B11F4A7B8A0017A76A /* BaseModel.m in Sources */,
 				28C8B8991F4A7B8A0017A76A /* ScrollTouch.m in Sources */,
 				28C8B6841F4A7B5C0017A76A /* menuTab.m in Sources */,
+				28CFF1311F568C0E00160FFC /* LoginAPI.m in Sources */,
 				28C8B84F1F4A7B890017A76A /* MJRefreshAutoGifFooter.m in Sources */,
 				28C8B8601F4A7B890017A76A /* TAAnimatedDotView.m in Sources */,
 				28C8B8491F4A7B890017A76A /* MBProgressHUD.m in Sources */,

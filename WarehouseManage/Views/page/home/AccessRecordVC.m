@@ -7,13 +7,14 @@
 //
 
 #import "AccessRecordVC.h"
-
+#import "LoginAPI.h"
 @interface AccessRecordVC ()<UITextFieldDelegate>
 {
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIView *vScrollContent;
     IBOutlet NSLayoutConstraint *scrollHeight;
     IBOutlet UILabel *lblName;
+    NSString *strAction;
 }
 @end
 
@@ -32,17 +33,8 @@
     [self creatLabel:CGRectMake(0, 459, APP_W, 45) size:@"37" tag:7];
     // Do any additional setup after loading the view from its nib.
     
-    self.dataArry = [NSArray arrayWithObjects:@"10000",@"11000",@"120",@"130",@"140",@"150",@"160",@"170", nil];
-    for (int i = 0; i < self.dataArry.count; i ++) {
-        UILabel *lblOld = (UILabel *)[self.view viewWithTag:10+i];
-        CGFloat value = [self.dataArry[i] intValue];
-        if (value > 9999) {
-            value = value/10000;
-            lblOld.text = [NSString stringWithFormat:@"%.4f万",value];
-        }else{
-            lblOld.text = self.dataArry[i];
-        }
-    }
+    [self refreshList];
+    
     
     UIView *vSp = [[UIView alloc] initWithFrame:CGRectMake(0, 99, APP_W, 0.5)];
     vSp.backgroundColor = RGBHex(kColorGray206);
@@ -56,25 +48,6 @@
     lbl.font = fontSystem(kFontS28);
     lbl.textAlignment = NSTextAlignmentCenter;
     [vScrollContent addSubview:lbl];
-}
--(void)UIGlobal
-{
-    [super UIGlobal];
-    
-    if (QGLOBAL.warehouseType == WarehouseTypeShipments) {
-        [self naviTitle:@"出库"];
-    }else if (QGLOBAL.warehouseType == WarehouseTypeWarehousing){
-        [self naviTitle:@"入库"];
-    }else if (QGLOBAL.warehouseType == WarehouseTypeReturn){
-        [self naviTitle:@"退货"];
-    }
-    
-    lblName.text = self.name;
-    lblName.textColor = RGBHex(kColorGray204);
-    
-    
-    
-    
     
     UIButton *btnOk = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnOk setTitle:@"保存" forState:UIControlStateNormal];
@@ -87,7 +60,26 @@
     btnOk.clipsToBounds=YES;
     [vScrollContent addSubview:btnOk];
 }
-
+-(void)UIGlobal
+{
+    [super UIGlobal];
+    
+    if (QGLOBAL.warehouseType == WarehouseTypeShipments) {
+        [self naviTitle:@"出库"];
+        strAction = @"out";
+    }else if (QGLOBAL.warehouseType == WarehouseTypeWarehousing){
+        [self naviTitle:@"入库"];
+        strAction = @"in";
+    }else if (QGLOBAL.warehouseType == WarehouseTypeReturn){
+        [self naviTitle:@"退货"];
+        strAction = @"back";
+    }
+    
+    lblName.text = self.name;
+    lblName.textColor = RGBHex(kColorGray204);
+        
+    
+}
 - (void)creatLabel:(CGRect)rect size:(NSString *)size tag:(int)tag
 {
     UIView *v = [[UIView alloc] initWithFrame:rect];
@@ -143,43 +135,101 @@
     lblNew.tag = 1000+tag;
     [v addSubview:lblNew];
 }
+#pragma mark - 获取数据
+- (void)refreshList
+{
+//    [self showLoading];
+    [LoginAPI SizeCount:self.uid success:^(NSMutableDictionary *dict) {
+        self.dataArry = [NSArray arrayWithObjects:dict[@"30"],dict[@"31"],dict[@"32"],dict[@"33"],dict[@"34"],dict[@"35"],dict[@"36"],dict[@"37"], nil];
+        DLog(@"%@",_dataArry);
+        for (int i = 0; i < 8; i ++) {
+            UILabel *lblOld = (UILabel *)[self.view viewWithTag:10+i];
+            CGFloat value = [self.dataArry[i] intValue];
+            if (value > 9999) {
+                value = value/10000;
+                lblOld.text = [NSString stringWithFormat:@"%.4f万",value];
+            }else{
+                lblOld.text = [NSString stringWithFormat:@"%.f",value];
+            }
+        }
+        
+    } failure:^(NetError *err) {
+        [self didLoad];
+    }];
+    
+}
 
-- (IBAction)okAction:(id)sender {
+#pragma mark - action
+- (void)okAction:(UIButton *)sender {
     [self showLoading];
+    BOOL isSuccess = NO;
+    NSMutableArray *sizeArr = [NSMutableArray array];
     for (int i = 0; i < self.dataArry.count; i ++) {
-        UILabel *lblOld = (UILabel *)[self.view viewWithTag:10+i];
-        lblOld.text = self.dataArry[i];
+//        UILabel *lblOld = (UILabel *)[self.view viewWithTag:10+i];
+        CGFloat oldValue = [self.dataArry[i] intValue];
+//        lblOld.text = self.dataArry[i];
         UITextField *txt = (UITextField *)[self.view viewWithTag:100+i];
         UILabel *lblNew = (UILabel *)[self.view viewWithTag:1000+i];
         lblNew.textColor = RGBHex(kColorGray204);
         if (QGLOBAL.warehouseType == WarehouseTypeWarehousing || QGLOBAL.warehouseType == WarehouseTypeReturn) {
-            CGFloat value = lblOld.text.intValue + txt.text.intValue;
+            CGFloat value = oldValue + txt.text.intValue;
             if (value > 9999) {
                 value = value/10000;
                 lblNew.text = [NSString stringWithFormat:@"%.4f万",value];
             }else{
-                lblNew.text = [NSString stringWithFormat:@"%d",lblOld.text.intValue + txt.text.intValue];
+                lblNew.text = [NSString stringWithFormat:@"%.f",oldValue + txt.text.intValue];
             }
-            
+            if (StrIsEmpty(txt.text)) {
+                txt.text = @"0";
+            }
+            [sizeArr addObject:txt.text];
+            isSuccess = YES;
         }else if (QGLOBAL.warehouseType == WarehouseTypeShipments){
             [self didLoad];
-            CGFloat value = lblOld.text.intValue - txt.text.intValue;
+            CGFloat value = oldValue - txt.text.intValue;
             if (value < 0) {
                 [self didLoad];
                 [self showText:[NSString stringWithFormat:@"%d号尺寸出库数量小于总数量",30+i]];
+                isSuccess = NO;
                 break;
             }else{
                 if (value > 9999) {
                     value = value/10000;
                     lblNew.text = [NSString stringWithFormat:@"%.4f万",value];
                 }else{
-                    lblNew.text = [NSString stringWithFormat:@"%d",lblOld.text.intValue - txt.text.intValue];
+                    lblNew.text = [NSString stringWithFormat:@"%.f",oldValue - txt.text.intValue];
                 }
+                if (StrIsEmpty(txt.text)) {
+                    txt.text = @"0";
+                }
+                [sizeArr addObject:txt.text];
+                isSuccess = YES;
             }
             
         }
         
     }
+    if (isSuccess) {
+        UIAlertController *alt = [UIAlertController alertControllerWithTitle:@"确定保存?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *can = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self didLoad];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [LoginAPI Inventoryoperation:sizeArr uid:self.uid action:strAction success:^(id model) {
+                [self showText:@"操作成功"];
+                [self didLoad];
+            } failure:^(NetError *err) {
+                [self showText:@"操作失败,请重试"];
+                [self didLoad];
+            }];
+        }];
+        [alt addAction:can];
+        [alt addAction:cancel];
+        [self presentViewController:alt animated:YES completion:nil];
+        
+    }
+    
+    
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {

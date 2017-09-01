@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 
 @interface AccessRecordVC : BaseViewController
-@property(nonatomic,retain) NSString *name,*oldNum1,*oldNum2,*oldNum3;
+@property(nonatomic,retain) NSString *name,*oldNum1,*oldNum2,*oldNum3,*uid;
 @property(nonatomic,retain) NSArray *dataArry;
 @end

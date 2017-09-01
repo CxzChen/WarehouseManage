@@ -9,11 +9,14 @@
 #import "StatisticalVC.h"
 #import "CommodityCell.h"
 #import "ASBirthSelectSheet.h"
+#import "LoginAPI.h"
 @interface StatisticalVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITextField *txtSearch;
     NSString *strDateF,*endDateF,*strDate,*endDate;
     UIButton *btnStart,*btnStop;
+    MJRefreshNormalHeader *headerMJ;
+    NSMutableArray *arrAll;
 }
 @end
 
@@ -21,41 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    CommodityModel *p1 = [[CommodityModel alloc] init];
-    p1.name = @"A";
-    p1.odlNum = @"100";
-    p1.lastNum = @"22";
-    p1.wareNum = @"11";
-    p1.shipNum = @"11";
-    p1.returnNum = @"1";
-    p1.size = @[@"50",@"30",@"20"];
-    CommodityModel *p2 = [[CommodityModel alloc] init];
-    p2.name = @"B";
-    p2.odlNum = @"110";
-    p2.lastNum = @"33";
-    p2.wareNum = @"11";
-    p2.shipNum = @"11";
-    p2.returnNum = @"1";
-    p2.size = @[@"50",@"30",@"30"];
-    CommodityModel *p3 = [[CommodityModel alloc] init];
-    p3.name = @"C";
-    p3.odlNum = @"90";
-    p3.lastNum = @"22";
-    p3.wareNum = @"11";
-    p3.shipNum = @"11";
-    p3.returnNum = @"1";
-    p3.size = @[@"50",@"30",@"10"];
-    CommodityModel *p4 = [[CommodityModel alloc] init];
-    p4.name = @"D";
-    p4.odlNum = @"80";
-    p4.lastNum = @"8";
-    p4.wareNum = @"11";
-    p4.shipNum = @"11";
-    p4.returnNum = @"1";
-    p4.size = @[@"50",@"10",@"20"];
-    self.arrData = [NSMutableArray arrayWithObjects:p1,p2,p3,p4, nil];
-    
+    [self refreshList];
+    [self setupMJ];
+    strDateF = nil;
+    endDateF = nil;
     // Do any additional setup after loading the view from its nib.
 }
 - (void)UIGlobal
@@ -104,11 +76,38 @@
     
     return aView;
 }
+#pragma mark - 上下拉刷新
+- (void)setupMJ {
+    headerMJ = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshList)];
+    [headerMJ setTitle:@"松开即可刷新" forState:MJRefreshStateIdle];
+    self.tableMain.header = headerMJ;
+    headerMJ.stateLabel.textColor = RGBHex(kColorGray201);
+    headerMJ.stateLabel.font = fontSystem(kFontS26);
+    headerMJ.lastUpdatedTimeLabel.textColor = RGBHex(kColorGray203);
+    headerMJ.lastUpdatedTimeLabel.font = fontSystem(kFontS20);
+    
+}
+
+- (void)refreshData{
+    [headerMJ beginRefreshing];
+}
 #pragma mark - 获取数据
 - (void)refreshList
 {
     [self showLoading];
-    
+    [LoginAPI commodityListStart:strDate end:endDate success:^(NSMutableArray *arr) {
+        [self didLoad];
+        self.arrData = [NSMutableArray array];
+        [self.arrData addObjectsFromArray:arr];
+        arrAll = [NSMutableArray array];
+        [arrAll addObjectsFromArray:arr];
+        [self.tableMain.header endRefreshing];
+        [self.tableMain reloadData];
+    } failure:^(NetError *err) {
+        [self didLoad];
+        [self showText:@"加载失败，请刷新重试"];
+        [self.tableMain.header endRefreshing];
+    }];
     
 }
 #pragma mark - tableview代理方法
@@ -131,7 +130,7 @@
         cell=[[[NSBundle mainBundle] loadNibNamed:tableID owner:self options:nil] lastObject];
     }
     
-    CommodityModel *mm = self.arrData[indexPath.row];
+    CommodityListModel *mm = self.arrData[indexPath.row];
     [cell setCell:mm];
     return cell;
     
@@ -144,7 +143,12 @@
     vH.backgroundColor = RGBHex(kColorW);
     btnStart = [UIButton buttonWithType:UIButtonTypeCustom];
     btnStart.frame = CGRectMake(15, 0, (APP_W - 52)/2, 40);
-    [btnStart setTitle:@"起始时间" forState:UIControlStateNormal];
+    if (StrIsEmpty(strDateF)) {
+        [btnStart setTitle:@"起始时间" forState:UIControlStateNormal];
+    }else{
+        [btnStart setTitle:strDateF forState:UIControlStateNormal];
+    }
+    
     [btnStart setTitleColor:RGBHex(kColorGray203) forState:UIControlStateNormal];
     [btnStart addTarget:self action:@selector(startAction:) forControlEvents:UIControlEventTouchUpInside];
     [vH addSubview:btnStart];
@@ -156,7 +160,11 @@
     
     btnStop = [UIButton buttonWithType:UIButtonTypeCustom];
     btnStop.frame = CGRectMake(CGRectGetMaxX(lbl.frame)+3, 0, (APP_W - 52)/2, 40);
-    [btnStop setTitle:@"截止时间" forState:UIControlStateNormal];
+    if (StrIsEmpty(endDateF)) {
+        [btnStop setTitle:@"截止时间" forState:UIControlStateNormal];
+    }else{
+        [btnStop setTitle:endDateF forState:UIControlStateNormal];
+    }
     [btnStop setTitleColor:RGBHex(kColorGray203) forState:UIControlStateNormal];
     [btnStop addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
     [vH addSubview:btnStop];
@@ -201,6 +209,9 @@
         
         strDate=[QGLOBAL dateToTimeInterval:date];
         [btnStart setTitle:strDateF forState:UIControlStateNormal];
+        
+        strDate = [NSString stringWithFormat:@"%@ 00:00:00",strDateF];
+        
 //        RealNameModelDB *mm = [RealNameModelDB getModelFromDB];
 //        mm.s_time = strDate;
 //        mm.validity_s_time = strDateF;
@@ -226,6 +237,8 @@
         endDateF=[formatter stringFromDate:date];
         endDate=[QGLOBAL dateToTimeInterval:date];
         [btnStop setTitle:endDateF forState:UIControlStateNormal];
+        endDate = [NSString stringWithFormat:@"%@ 23:59:59",endDateF];
+        [self refreshList];
 //        RealNameModelDB *mm = [RealNameModelDB getModelFromDB];
 //        mm.e_time = endDate;
 //        mm.validity_e_time = endDateF;
@@ -245,7 +258,38 @@
 {
     
 }
-
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [super textFieldShouldReturn:textField];
+    self.arrData = [NSMutableArray arrayWithArray:arrAll];
+    NSMutableArray *arr = [NSMutableArray array];
+    NSString *temp =nil;
+    NSMutableArray *strArr = [NSMutableArray array];
+    for(int i =0; i < [txtSearch.text length]; i++)
+    {
+        temp = [txtSearch.text substringWithRange:NSMakeRange(i,1)];
+        [strArr addObject:temp];
+    }
+    for (CommodityListModel *mm in self.arrData) {
+        if ([mm.good.name containsString:txtSearch.text]) {
+            [arr addObject:mm];
+        }else{
+            for (NSString *str in strArr) {
+                if ([mm.good.name containsString:str]) {
+                    [arr addObject:mm];
+                }
+            }
+        }
+    }
+    NSSet *set = [NSSet setWithArray:arr];
+    NSArray *dateArr = [NSArray arrayWithArray:[set allObjects]];
+    self.arrData = [NSMutableArray arrayWithArray:dateArr];
+    [self.tableMain reloadData];
+    if (self.arrData.count < 1) {
+        [self showText:@"没有此商品"];
+    }
+    return YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -7,7 +7,7 @@
 //
 
 #import "LoginVC.h"
-
+#import "LoginAPI.h"
 @interface LoginVC ()
 {
     IBOutlet UITextField *txtUser,*txtPwd;
@@ -60,10 +60,21 @@
     }
     if ([QGLOBAL isUsername:txtUser.text] && [QGLOBAL isPassword:txtPwd.text]){
         [self showLoading];
+        [LoginAPI loginUsername:txtUser.text password:txtPwd.text success:^(AuthModel *model) {
+            [self didLoad];
+            
+            QGLOBAL.auth = model;
+            [APPDelegate mainInit];
+        } failure:^(NetError *err) {
+            [self didLoad];
+            [self showText:err.errMessage];
+        }];
+        
+        
     }else{
         [self showText:@"用户名或密码格式不正确!"];
     }
-    [APPDelegate mainInit];
+    
 }
 
 - (void)didReceiveMemoryWarning {

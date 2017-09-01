@@ -7,7 +7,7 @@
 //
 
 #import "QGlobalManager.h"
-
+#import "LoginAPI.h"
 #import "MBProgressHUD.h"
 #import <MediaPlayer/MediaPlayer.h> //mp是av的再封装
 #import <AVFoundation/AVFoundation.h>//相对底层，要自己定义界面
@@ -209,56 +209,30 @@
 //    }
 //}
 
-//- (void)checkAuthResult:(void(^)(BOOL enabled))block{
-//    QGLOBAL.auth=[AuthModel getModelFromDB];
-//    if (QGLOBAL.auth.username.length && QGLOBAL.auth.vso_token.length) {
-//        DLog(@">>> auth:%@",QGLOBAL.auth);
-//        [SignAPI getUserInfoUsername:QGLOBAL.auth.username success:^(UserModel *model) {
-//            QGLOBAL.usermodel = model;
-//            AuthModel *authModel = [[AuthModel alloc] init];
-//            authModel = QGLOBAL.auth;
-//            authModel.nickname = model.nickname;
-//            authModel.avatar = model.avatar;
-//            authModel.mobile = model.mobile;
-//            QGLOBAL.auth = authModel;
-//            DLog(@">>> auth:%@",QGLOBAL.auth);
-//            if (block) {
-//                block(YES);
-//            }
-//        } failure:^(NetError *err) {
-//            QGLOBAL.auth=nil;
-//            
-//            if (block) {
-//                block(NO);
-//            }
-//        }];
-//        /*
-//        [SignAPI checkAuthUsername:QGLOBAL.auth.username vso_token:QGLOBAL.auth.vso_token success:^(UserModel *model) {
-//            
-//            QGLOBAL.usermodel = model;
-//            AuthModel *authModel = [[AuthModel alloc] init];
-//            authModel = QGLOBAL.auth;
-//            authModel.nickname = model.nickname;
-//            authModel.avatar = model.avatar;
-//            QGLOBAL.auth = authModel;
-//            DLog(@">>> auth:%@",QGLOBAL.auth);
-//            if (block) {
-//                block(YES);
-//            }            
-//        } failure:^(id err) {
-//            QGLOBAL.auth=nil;
-//            
-//            if (block) {
-//                block(NO);
-//            }
-//        }];
-//        */
-//    }
-//    else if (block) {
-//        QGLOBAL.auth=nil;
-//        block(NO);
-//    }
-//}
+- (void)checkAuthResult:(void(^)(BOOL enabled))block{
+    QGLOBAL.auth=[AuthModel getModelFromDB];
+    if (QGLOBAL.auth.username.length && QGLOBAL.auth.vso_token.length) {
+        
+        [LoginAPI checkAuthUsername:QGLOBAL.auth.username vso_token:QGLOBAL.auth.vso_token success:^(UserModel *model) {
+            
+            
+            if (block) {
+                block(YES);
+            }            
+        } failure:^(id err) {
+            QGLOBAL.auth=nil;
+            
+            if (block) {
+                block(NO);
+            }
+        }];
+        
+    }
+    else if (block) {
+        QGLOBAL.auth=nil;
+        block(NO);
+    }
+}
 
 #pragma mark 时间格式
 - (NSString*)dateTimeIntervalToStr:(NSString*)datetime{

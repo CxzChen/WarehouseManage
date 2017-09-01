@@ -9,9 +9,13 @@
 #import "CommodityListVC.h"
 #import "CommodityCell.h"
 #import "AccessRecordVC.h"
-@interface CommodityListVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "LoginAPI.h"
+#import "MJRefresh.h"
+@interface CommodityListVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITextField *txtSearch;
+    MJRefreshNormalHeader *headerMJ;
+    NSMutableArray *arrAll;
 }
 @end
 
@@ -19,39 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CommodityModel *p1 = [[CommodityModel alloc] init];
-    p1.name = @"A";
-    p1.odlNum = @"153653";
-    p1.lastNum = @"22";
-    p1.wareNum = @"11";
-    p1.shipNum = @"11";
-    p1.returnNum = @"1";
-    p1.size = @[@"50",@"30",@"20"];
-    CommodityModel *p2 = [[CommodityModel alloc] init];
-    p2.name = @"B";
-    p2.odlNum = @"110";
-    p2.lastNum = @"33";
-    p2.wareNum = @"11";
-    p2.shipNum = @"11";
-    p2.returnNum = @"1";
-    p2.size = @[@"50",@"30",@"30"];
-    CommodityModel *p3 = [[CommodityModel alloc] init];
-    p3.name = @"C";
-    p3.odlNum = @"90";
-    p3.lastNum = @"22";
-    p3.wareNum = @"11";
-    p3.shipNum = @"11";
-    p3.returnNum = @"1";
-    p3.size = @[@"50",@"30",@"10"];
-    CommodityModel *p4 = [[CommodityModel alloc] init];
-    p4.name = @"D";
-    p4.odlNum = @"80";
-    p4.lastNum = @"8";
-    p4.wareNum = @"11";
-    p4.shipNum = @"11";
-    p4.returnNum = @"1";
-    p4.size = @[@"50",@"10",@"20"];
-    self.arrData = [NSMutableArray arrayWithObjects:p1,p2,p3,p4, nil];
+    [self refreshList];
+    [self setupMJ];
+    
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - UI
@@ -96,15 +70,42 @@
     [self.navigationItem setTitleView:aView];
     [self naviTitleView:aView];
     //显示键盘
-    [txtSearch becomeFirstResponder];
+//    [txtSearch becomeFirstResponder];
     
     return aView;
+}
+#pragma mark - 上下拉刷新
+- (void)setupMJ {
+    headerMJ = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshList)];
+    [headerMJ setTitle:@"松开即可刷新" forState:MJRefreshStateIdle];
+    self.tableMain.header = headerMJ;
+    headerMJ.stateLabel.textColor = RGBHex(kColorGray201);
+    headerMJ.stateLabel.font = fontSystem(kFontS26);
+    headerMJ.lastUpdatedTimeLabel.textColor = RGBHex(kColorGray203);
+    headerMJ.lastUpdatedTimeLabel.font = fontSystem(kFontS20);
+    
+}
+
+- (void)refreshData{
+    [headerMJ beginRefreshing];
 }
 #pragma mark - 获取数据
 - (void)refreshList
 {
     [self showLoading];
-    
+    [LoginAPI commodityListStart:nil end:nil success:^(NSMutableArray *arr) {
+        [self didLoad];
+        self.arrData = [NSMutableArray array];
+        arrAll = [NSMutableArray array];
+        [arrAll addObjectsFromArray:arr];
+        [self.arrData addObjectsFromArray:arr];
+        [self.tableMain.header endRefreshing];
+        [self.tableMain reloadData];
+    } failure:^(NetError *err) {
+        [self didLoad];
+        [self showText:@"加载失败，请刷新重试"];
+        [self.tableMain.header endRefreshing];
+    }];
     
 }
 #pragma mark - tableview代理方法
@@ -127,7 +128,7 @@
         cell=[[[NSBundle mainBundle] loadNibNamed:tableID owner:self options:nil] lastObject];
     }
     
-    CommodityModel *mm = self.arrData[indexPath.row];
+    CommodityListModel *mm = self.arrData[indexPath.row];
     [cell setCell:mm];
     return cell;
     
@@ -135,23 +136,80 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CommodityModel *mm = self.arrData[indexPath.row];
+    CommodityListModel *mm = self.arrData[indexPath.row];
     AccessRecordVC *vc = [AccessRecordVC initFromXib];
-    vc.dataArry = [NSArray arrayWithArray:mm.size];
-    vc.oldNum1 = mm.size[0];
-    vc.oldNum2 = mm.size[1];
-    vc.oldNum3 = mm.size[2];
-    vc.name = mm.name;
+    vc.name = mm.good.name;
+    vc.uid = mm.uid;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 55;
 }
-#pragma mark - action
-- (void)searchAction:(UIButton *)sender
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [super textFieldShouldReturn:textField];
+    self.arrData = [NSMutableArray arrayWithArray:arrAll];
+    NSMutableArray *arr = [NSMutableArray array];
+    NSString *temp =nil;
+    NSMutableArray *strArr = [NSMutableArray array];
+    for(int i =0; i < [txtSearch.text length]; i++)
+    {
+        temp = [txtSearch.text substringWithRange:NSMakeRange(i,1)];
+        [strArr addObject:temp];
+    }
+    for (CommodityListModel *mm in self.arrData) {
+        if ([mm.good.name containsString:txtSearch.text]) {
+            [arr addObject:mm];
+        }else{
+            for (NSString *str in strArr) {
+                if ([mm.good.name containsString:str]) {
+                    [arr addObject:mm];
+                }
+            }
+        }
+    }
+    NSSet *set = [NSSet setWithArray:arr];
+    NSArray *dateArr = [NSArray arrayWithArray:[set allObjects]];
+    self.arrData = [NSMutableArray arrayWithArray:dateArr];
+    [self.tableMain reloadData];
+    if (self.arrData.count < 1) {
+        [self showText:@"没有此商品"];
+    }
+    return YES;
+}
+
+#pragma mark 指定可以进行编辑的行(cell)
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+#pragma mark 指定tableView的编辑方式(删除还是添加)
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+#pragma mark 提交编辑结果
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    CommodityListModel *mm = self.arrData[indexPath.row];
+    [LoginAPI DeleteCommidity:mm.uid success:^(id model) {
+        [self.arrData removeObject:mm];
+        [arrAll removeObject:mm];
+        // 让tableView执行编辑操作
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } failure:^(NetError *err) {
+        [self showText:@"删除失败"];
+    }];
+    
+}
+#pragma mark 修改滑动删除的字样
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

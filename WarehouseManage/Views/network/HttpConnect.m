@@ -228,13 +228,13 @@
 - (NSDictionary *)checkParams:(NSDictionary *)dict url:(NSString *)url{
     NSMutableDictionary *dd=[[NSMutableDictionary alloc]initWithDictionary:dict copyItems:YES];
     if (!StrIsEmpty(QGLOBAL.auth.vso_token))
-        dd[@"auth_token"]=StrFromObj(QGLOBAL.auth.vso_token);
-    if (!StrIsEmpty(QGLOBAL.auth.username))
-        dd[@"auth_username"]=StrFromObj(QGLOBAL.auth.username);
+        dd[@"token"]=StrFromObj(QGLOBAL.auth.vso_token);
+//    if (!StrIsEmpty(QGLOBAL.auth.username))
+//        dd[@"auth_username"]=StrFromObj(QGLOBAL.auth.username);
 //    if (!StrIsEmpty(url))
 //        dd[@"url"]=StrFromObj(url);
     
-    dd[@"lang"] = @"zh-CN";
+//    dd[@"lang"] = @"zh-CN";
     
     //临时添加
 //    dd[@"from"]=@"iOS";//[NSString stringWithFormat:@"VSO-Task-iOS/%@ (iOS %@)",VERSION,OS_VERSION];
@@ -269,7 +269,7 @@
 - (void)post:(NSString *)url params:(NSDictionary *)params success:(void(^)(id responseObj))success failure:(void(^)(NetError* err))failure
 {
     params = [self checkParams:params url:url];
-    [self requestWithPath:[self getUrlWithPath:url] params:params method:@"POST" progressEnabled:NO success:^(id responseObj) {
+    [self requestWithPath:url params:params method:@"POST" progressEnabled:NO success:^(id responseObj) {
         success (responseObj);
     } failure:^(NetError* err) {
         failure(err);

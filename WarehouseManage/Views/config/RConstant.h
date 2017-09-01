@@ -11,10 +11,10 @@
 /* ....................................................................................*/
 #pragma mark - ### 生产环境 ###
 // ----------------------------- 正式生产环境 API------------------------------- //
-#define BASE_URL_INNER                @"https://maker.vsochina.com/" //@"https://cyy.vsochina.com/"
-#define BASE_URL_APINEW               @"https://apinew.vsochina.com/"
-//hybrid h5地址
-#define BASE_HYBRID_URL                  @"https://m.vsochina.com/"
+#define BASE_URL_INNER                @"http://121.41.32.148:3000/v1/" //@"https://cyy.vsochina.com/"
+//#define BASE_URL_APINEW               @"https://apinew.vsochina.com/"
+////hybrid h5地址
+//#define BASE_HYBRID_URL                  @"https://m.vsochina.com/"
 
 // ----------------------------- 参数------------------------------- //
 //极光推送

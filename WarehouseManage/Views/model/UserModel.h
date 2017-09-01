@@ -10,39 +10,45 @@
 @interface AuthModel : BaseModel
 //@property (nonatomic,retain) NSString<Optional> *access_id;//auth_username
 //@property (nonatomic,retain) NSString<Optional> *access_token;//auth_token
-@property (nonatomic,retain) NSString *username;
-@property (nonatomic,retain) NSString<Optional> *loginID;
-@property (nonatomic,retain) NSString<Optional> *isnewpwd;
-@property (nonatomic,retain) NSString<Optional> *email;
-@property (nonatomic,retain) NSString<Optional> *logined;
-@property (nonatomic,retain) NSString<Optional> *mobile;
-@property (nonatomic,retain) NSString<Optional> *nickname;
-@property (nonatomic,retain) NSString<Optional> *password;
-@property (nonatomic,retain) NSString<Optional> *status;
-@property (nonatomic,retain) NSString<Optional> *uid;
-@property (nonatomic,retain) NSString<Optional> *authid;
-@property (nonatomic,retain) NSString<Optional> *vso_token;
-@property (nonatomic,retain) NSString<Optional> *avatar;
-@property (nonatomic,retain) NSString<Optional> *choose_role_source;
-@end
-@interface UserModel : BasePrivateModel
-@property (nonatomic,retain) NSString<Optional> *uid;
 @property (nonatomic,retain) NSString<Optional> *username;
-@property (nonatomic,retain) NSString<Optional> *nickname;
-@property (nonatomic,retain) NSString<Optional> *sex;
-@property (nonatomic,retain) NSString<Optional> *truename;
-@property (nonatomic,retain) NSString<Optional> *indus_pid;
-@property (nonatomic,retain) NSString<Optional> *indus_name;
-@property (nonatomic,retain) NSString<Optional> *avatar;
-@property (nonatomic,retain) NSString<Optional> *lable;
-@property (nonatomic,retain) NSString<Optional> *mobile;
-@property (nonatomic,retain) NSString<Optional> *email;
-@property (nonatomic,retain) NSString<Optional> *group_id;
-@property (nonatomic,retain) NSString<Optional> *group_name;
-@property (nonatomic,retain) NSDictionary<Optional> *auth_realname_record;
-@property (nonatomic,retain) NSDictionary<Optional> *auth_enterprise_record;
-@property (nonatomic,retain) NSString<Optional> *brief;
+@property (nonatomic,retain) NSString<Optional> *loginID;
+@property (nonatomic,retain) NSString<Optional> *vso_token;
+
 @end
+@interface AuthToken : BasePrivateModel
+@property (nonatomic,retain) NSString<Optional> *token;
+@property (nonatomic,retain) NSString<Optional> *expired;
+@end
+@protocol  AuthToken<NSObject>
+
+@end
+
+@interface UserModel : BasePrivateModel
+@property (nonatomic,retain) NSString<Optional> *nickname;
+@property (nonatomic,retain) NSString<Optional> *uid;
+@property (nonatomic,retain) NSString<Optional> *password;
+@property (nonatomic,retain) NSDictionary<AuthToken,Optional> *auth;
+@end
+
+@interface CommldityInfo : BaseModel
+@property (nonatomic,retain) NSString<Optional> *creator;
+@property (nonatomic,retain) NSString<Optional> *name;
+@property (nonatomic,retain) NSString<Optional> *category;
+@end
+
+@protocol  CommldityInfo<NSObject>
+
+@end
+@interface CommodityListModel : BaseModel
+@property (nonatomic,retain) NSString<Optional> *origin;
+@property (nonatomic,retain) NSString<Optional> *uid;
+@property (nonatomic,retain) NSString<Optional> *now;
+@property (nonatomic,retain) NSString<Optional> *warehousing;
+@property (nonatomic,retain) NSString<Optional> *shipments;
+@property (nonatomic,retain) NSString<Optional> *back;
+@property (nonatomic,retain) CommldityInfo<Optional> *good;
+@end
+
 @interface PersonalInfoModel : BaseModel
 
 @end

@@ -9,43 +9,44 @@
 #import "CommodityCell.h"
 
 @implementation CommodityCell
-- (void)setCell:(CommodityModel *)model
+- (void)setCell:(CommodityListModel *)model
 {
-    lblName.text = model.name;
-    if (model.odlNum.intValue > 9999) {
-        CGFloat a = model.odlNum.intValue;
+    lblName.text = model.good.name;
+    
+    if (model.origin.intValue > 9999) {
+        CGFloat a = model.origin.intValue;
         a = a/10000;
         lblOld.text = [NSString stringWithFormat:@"原:%.4f万",a];
     }else{
-        lblOld.text = [NSString stringWithFormat:@"原:%@",model.odlNum];
+        lblOld.text = [NSString stringWithFormat:@"原:%@",model.origin];
     }
-    if (model.lastNum.intValue > 9999) {
-        CGFloat a = model.lastNum.intValue;
+    if (model.now.intValue > 9999) {
+        CGFloat a = model.now.intValue;
         a = a/10000;
         lblNew.text = [NSString stringWithFormat:@"现:%.4f万",a];
     }else{
-        lblNew.text = [NSString stringWithFormat:@"现:%@",model.lastNum];
+        lblNew.text = [NSString stringWithFormat:@"现:%@",model.now];
     }
-    if (model.wareNum.intValue > 9999) {
-        CGFloat a = model.wareNum.intValue;
+    if (model.warehousing.intValue > 9999) {
+        CGFloat a = model.warehousing.intValue;
         a = a/10000;
         lblWare.text = [NSString stringWithFormat:@"入:%.4f万",a];
     }else{
-        lblWare.text = [NSString stringWithFormat:@"入:%@",model.wareNum];
+        lblWare.text = [NSString stringWithFormat:@"入:%@",model.warehousing];
     }
-    if (model.shipNum.intValue > 9999) {
-        CGFloat a = model.shipNum.intValue;
+    if (model.shipments.intValue > 9999) {
+        CGFloat a = model.shipments.intValue;
         a = a/10000;
         lblShip.text = [NSString stringWithFormat:@"出:%.4f万",a];
     }else{
-        lblShip.text = [NSString stringWithFormat:@"出:%@",model.shipNum];
+        lblShip.text = [NSString stringWithFormat:@"出:%@",model.shipments];
     }
-    if (model.returnNum.intValue > 9999) {
-        CGFloat a = model.returnNum.intValue;
+    if (model.back.intValue > 9999) {
+        CGFloat a = model.back.intValue;
         a = a/10000;
         lblReturn.text = [NSString stringWithFormat:@"退:%.4f万",a];
     }else{
-        lblReturn.text = [NSString stringWithFormat:@"退:%@",model.returnNum];
+        lblReturn.text = [NSString stringWithFormat:@"退:%@",model.back];
     }
     
     

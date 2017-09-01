@@ -16,7 +16,7 @@
 #import "AppDelegate.h"
 #import "RCSS.h"
 #import "RConstant.h"
-//#import "API.h"
+#import "API.h"
 #import <UMSocialCore/UMSocialCore.h>
 
 #import "HttpConnect.h"

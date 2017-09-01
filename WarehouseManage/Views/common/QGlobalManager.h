@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, WarehouseType){
 #pragma mark - apple store
 - (void)openAppStoreLink;
 
-//- (void)checkAuthResult:(void(^)(BOOL enabled))block;
+- (void)checkAuthResult:(void(^)(BOOL enabled))block;
 //- (void)logout;
 //- (void)logoutSuccess:(void (^)(BOOL isLogout))isLogout;
 //- (void)authInvalid;
