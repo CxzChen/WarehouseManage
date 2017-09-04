@@ -24,5 +24,7 @@
 + (void)Inventoryoperation:(NSMutableArray *)arr uid:(NSString *)uid action:(NSString *)action success:(void(^)(id model))success failure:(void(^)(NetError* err))failure;
 // 删除
 + (void)DeleteCommidity:(NSString *)uid success:(void(^)(id model))success failure:(void(^)(NetError* err))failure;
+// 尺寸数量
++ (void)StatisticalSizeCount:(NSString *)uid start:(NSString *)start end:(NSString *)end success:(void(^)(NSMutableArray *arr))success failure:(void(^)(NetError* err))failure;
 @end
 

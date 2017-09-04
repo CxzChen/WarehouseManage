@@ -11,7 +11,9 @@
 #import "AddVC.h"
 #import "StatisticalVC.h"
 @interface HomeVC ()
-
+{
+    IBOutlet UILabel *lblW,*lblS,*lblA,*lblSt,*lblO;
+}
 @end
 
 @implementation HomeVC
@@ -26,6 +28,13 @@
 {
     [super UIGlobal];
     [self naviTitle:@"首页"];
+    
+    lblA.textColor = RGBHex(kColorGray208);
+    lblW.textColor = RGBHex(kColorGray208);
+    lblO.textColor = RGBHex(kColorGray208);
+    lblS.textColor = RGBHex(kColorGray208);
+    lblSt.textColor = RGBHex(kColorGray208);
+    
 }
 
 #pragma mark - action

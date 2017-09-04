@@ -110,7 +110,11 @@
 //            [self popVCAction:nil];
         } failure:^(NetError *err) {
             [self didLoad];
+            if (err.errStatusCode == 400) {
+                [self showText:@"此商品名已被占用"];
+            }else{
             [self showText:@"添加失败,请重试"];
+            }
         }];
     }
 }

@@ -162,4 +162,33 @@
         }
     }];
 }
+
+// 尺寸数量
++ (void)StatisticalSizeCount:(NSString *)uid start:(NSString *)start end:(NSString *)end success:(void(^)(NSMutableArray *arr))success failure:(void(^)(NetError* err))failure
+{
+    NSString *url = [NSString stringWithFormat:@"%@good/%@/detreserve",BASE_URL_INNER,uid];
+    NSMutableDictionary *dd=[NSMutableDictionary dictionary];
+    if (StrIsEmpty(start) || StrIsEmpty(end)){
+        
+    }else{
+        dd[@"beginTime"] = StrFromObj(start);
+        dd[@"endTime"] = StrFromObj(end);
+    }
+    
+    [HTTPConnecting get:url params:dd success:^(id responseObj) {
+        NSMutableDictionary *dd = responseObj;
+        NSMutableArray *sizeArr = dd[@"size"];
+        NSError* err = nil;
+        NSMutableArray *arr = [SizeCounModel arrayOfModelsFromDictionaries:sizeArr error:&err];
+        
+        
+        if (success) {
+            success (arr);
+        }
+    } failure:^(NetError *err) {
+        if (failure) {
+            failure(err);
+        }
+    }];
+}
 @end

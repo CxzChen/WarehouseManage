@@ -31,7 +31,12 @@
     return [[JSONKeyMapper alloc]initWithDictionary:@{@"in":@"warehousing",@"out":@"shipments",@"_id":@"uid"}];
 }
 @end
-
+@implementation SizeCounModel
++(JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc]initWithDictionary:@{@"in":@"warehousing",@"out":@"shipments"}];
+}
+@end
 @implementation GuideModel
 
 @end

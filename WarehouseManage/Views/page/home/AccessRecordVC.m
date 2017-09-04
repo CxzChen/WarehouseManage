@@ -112,6 +112,7 @@
     txt.font=fontSystem(kFontS28);
     txt.textColor=RGBHex(kColorGray204);
     txt.delegate=self;
+    txt.keyboardType = UIKeyboardTypeNumberPad;
     txt.returnKeyType=UIReturnKeyDone;
     if (QGLOBAL.warehouseType == WarehouseTypeWarehousing) {
         txt.placeholder = @"入";
@@ -141,7 +142,7 @@
 //    [self showLoading];
     [LoginAPI SizeCount:self.uid success:^(NSMutableDictionary *dict) {
         self.dataArry = [NSArray arrayWithObjects:dict[@"30"],dict[@"31"],dict[@"32"],dict[@"33"],dict[@"34"],dict[@"35"],dict[@"36"],dict[@"37"], nil];
-        DLog(@"%@",_dataArry);
+//        DLog(@"%@",_dataArry);
         for (int i = 0; i < 8; i ++) {
             UILabel *lblOld = (UILabel *)[self.view viewWithTag:10+i];
             CGFloat value = [self.dataArry[i] intValue];

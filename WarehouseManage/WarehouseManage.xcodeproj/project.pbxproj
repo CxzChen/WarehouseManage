@@ -15,6 +15,10 @@
 		289571B11F4682680080A1C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 289571AF1F4682680080A1C9 /* LaunchScreen.storyboard */; };
 		289571BC1F4682690080A1C9 /* WarehouseManageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 289571BB1F4682690080A1C9 /* WarehouseManageTests.m */; };
 		289571C71F4682690080A1C9 /* WarehouseManageUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 289571C61F4682690080A1C9 /* WarehouseManageUITests.m */; };
+		28A310E81F5D1D8A00C1151D /* StatisticalSizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A310E61F5D1D8A00C1151D /* StatisticalSizeVC.m */; };
+		28A310E91F5D1D8A00C1151D /* StatisticalSizeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A310E71F5D1D8A00C1151D /* StatisticalSizeVC.xib */; };
+		28A310EC1F5D2ABB00C1151D /* SizeCounCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A310EB1F5D2ABB00C1151D /* SizeCounCell.m */; };
+		28A310EE1F5D2AC600C1151D /* SizeCounCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A310ED1F5D2AC600C1151D /* SizeCounCell.xib */; };
 		28B0852F1F4D21100001E8F1 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B0852D1F4D21100001E8F1 /* LoginVC.m */; };
 		28B085301F4D21100001E8F1 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B0852E1F4D21100001E8F1 /* LoginVC.xib */; };
 		28C8B66F1F4A7B5C0017A76A /* OtherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C8B6201F4A7B5C0017A76A /* OtherAPI.m */; };
@@ -271,6 +275,12 @@
 		289571C21F4682690080A1C9 /* WarehouseManageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarehouseManageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		289571C61F4682690080A1C9 /* WarehouseManageUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouseManageUITests.m; sourceTree = "<group>"; };
 		289571C81F46826A0080A1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28A310E51F5D1D8A00C1151D /* StatisticalSizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticalSizeVC.h; sourceTree = "<group>"; };
+		28A310E61F5D1D8A00C1151D /* StatisticalSizeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticalSizeVC.m; sourceTree = "<group>"; };
+		28A310E71F5D1D8A00C1151D /* StatisticalSizeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticalSizeVC.xib; sourceTree = "<group>"; };
+		28A310EA1F5D2ABB00C1151D /* SizeCounCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeCounCell.h; sourceTree = "<group>"; };
+		28A310EB1F5D2ABB00C1151D /* SizeCounCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeCounCell.m; sourceTree = "<group>"; };
+		28A310ED1F5D2AC600C1151D /* SizeCounCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SizeCounCell.xib; sourceTree = "<group>"; };
 		28B0852C1F4D21100001E8F1 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		28B0852D1F4D21100001E8F1 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		28B0852E1F4D21100001E8F1 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
@@ -934,6 +944,12 @@
 				28F5EC881F4BC7C400079B0B /* StatisticalVC.h */,
 				28F5EC891F4BC7C400079B0B /* StatisticalVC.m */,
 				28F5EC8A1F4BC7C400079B0B /* StatisticalVC.xib */,
+				28A310E51F5D1D8A00C1151D /* StatisticalSizeVC.h */,
+				28A310E61F5D1D8A00C1151D /* StatisticalSizeVC.m */,
+				28A310E71F5D1D8A00C1151D /* StatisticalSizeVC.xib */,
+				28A310EA1F5D2ABB00C1151D /* SizeCounCell.h */,
+				28A310EB1F5D2ABB00C1151D /* SizeCounCell.m */,
+				28A310ED1F5D2AC600C1151D /* SizeCounCell.xib */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -1824,7 +1840,7 @@
 				TargetAttributes = {
 					2895719D1F4682660080A1C9 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 846FVZ4CCA;
+						DevelopmentTeam = LP4BVW9XJN;
 						ProvisioningStyle = Automatic;
 					};
 					289571B61F4682680080A1C9 = {
@@ -1889,6 +1905,7 @@
 				28C8B82D1F4A7B890017A76A /* pause_nor@2x.png in Resources */,
 				289571AC1F4682670080A1C9 /* Main.storyboard in Resources */,
 				28C8B87B1F4A7B8A0017A76A /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				28A310E91F5D1D8A00C1151D /* StatisticalSizeVC.xib in Resources */,
 				28C8B6831F4A7B5C0017A76A /* HomeVC.xib in Resources */,
 				28C8B6871F4A7B5C0017A76A /* PhotoAlbum.storyboard in Resources */,
 				28C8B8B91F4A7B8A0017A76A /* protocol.htm in Resources */,
@@ -1910,6 +1927,7 @@
 				28C8B8881F4A7B8A0017A76A /* UMSocialSDKPromptResources.bundle in Resources */,
 				28C8B8271F4A7B890017A76A /* fast_backward_nor@2x.png in Resources */,
 				28C8B67D1F4A7B5C0017A76A /* AccessRecordVC.xib in Resources */,
+				28A310EE1F5D2AC600C1151D /* SizeCounCell.xib in Resources */,
 				28C8B8581F4A7B890017A76A /* MJRefresh.bundle in Resources */,
 				28C8B8291F4A7B890017A76A /* fast_forward_nor@2x.png in Resources */,
 			);
@@ -1965,6 +1983,7 @@
 				28C8B83C1F4A7B890017A76A /* JSONModelError.m in Sources */,
 				28C8B88B1F4A7B8A0017A76A /* QYUserDefault.m in Sources */,
 				28C8B6711F4A7B5C0017A76A /* BaseViewController.m in Sources */,
+				28A310E81F5D1D8A00C1151D /* StatisticalSizeVC.m in Sources */,
 				28C8B8AA1F4A7B8A0017A76A /* QYNavMsg.m in Sources */,
 				28C8B8651F4A7B890017A76A /* UIView+SDExtension.m in Sources */,
 				28C8B8741F4A7B890017A76A /* UIImageView+WebCache.m in Sources */,
@@ -2058,6 +2077,7 @@
 				28C8B81E1F4A7B890017A76A /* FMDatabase.m in Sources */,
 				28C8B8701F4A7B890017A76A /* UIButton+WebCache.m in Sources */,
 				28C8B83E1F4A7B890017A76A /* JSONAPI.m in Sources */,
+				28A310EC1F5D2ABB00C1151D /* SizeCounCell.m in Sources */,
 				28C8B68F1F4A7B5C0017A76A /* OpenFileDetailVC.m in Sources */,
 				28C8B8691F4A7B890017A76A /* SDImageCache.m in Sources */,
 				28C8B6791F4A7B5C0017A76A /* OtherModel.m in Sources */,
@@ -2245,7 +2265,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 846FVZ4CCA;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LP4BVW9XJN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries/QQ",
@@ -2269,8 +2290,9 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhchen.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = bodai.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2279,7 +2301,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 846FVZ4CCA;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LP4BVW9XJN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries/QQ",
@@ -2303,8 +2326,9 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhchen.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = bodai.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

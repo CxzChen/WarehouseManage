@@ -1,17 +1,17 @@
 //
-//  CommodityCell.m
-//  Test
+//  SizeCounCell.m
+//  WarehouseManage
 //
-//  Created by zhchen on 2017/8/18.
-//  Copyright © 2017年 YAN.Qingyang. All rights reserved.
+//  Created by zhchen on 2017/9/4.
+//  Copyright © 2017年 zhchen. All rights reserved.
 //
 
-#import "CommodityCell.h"
+#import "SizeCounCell.h"
 
-@implementation CommodityCell
-- (void)setCell:(CommodityListModel *)model
+@implementation SizeCounCell
+- (void)setCell:(SizeCounModel *)model
 {
-    lblName.text = model.good.name;
+    lblName.text = model.size;
     
     if (model.origin.intValue > 9999) {
         CGFloat a = model.origin.intValue;

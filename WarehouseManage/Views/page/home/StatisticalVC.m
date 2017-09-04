@@ -10,6 +10,7 @@
 #import "CommodityCell.h"
 #import "ASBirthSelectSheet.h"
 #import "LoginAPI.h"
+#import "StatisticalSizeVC.h"
 @interface StatisticalVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITextField *txtSearch;
@@ -190,7 +191,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    CommodityListModel *mm = self.arrData[indexPath.row];
+    StatisticalSizeVC *vc = [StatisticalSizeVC initFromXib];
+    vc.strartTime = strDate;
+    vc.endTime = endDate;
+    vc.uid = mm.uid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

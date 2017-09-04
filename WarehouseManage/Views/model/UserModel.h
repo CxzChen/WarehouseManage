@@ -49,6 +49,15 @@
 @property (nonatomic,retain) CommldityInfo<Optional> *good;
 @end
 
+@interface SizeCounModel : BaseModel
+@property (nonatomic,retain) NSString<Optional> *origin;
+@property (nonatomic,retain) NSString<Optional> *now;
+@property (nonatomic,retain) NSString<Optional> *warehousing;
+@property (nonatomic,retain) NSString<Optional> *shipments;
+@property (nonatomic,retain) NSString<Optional> *back;
+@property (nonatomic,retain) NSString<Optional> *size;
+@end
+
 @interface PersonalInfoModel : BaseModel
 
 @end
