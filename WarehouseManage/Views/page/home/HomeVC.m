@@ -63,6 +63,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)returnAction:(id)sender {
+    QGLOBAL.auth = nil;
+    QGLOBAL.auth.vso_token = nil;
+    QGLOBAL.auth.username = nil;
+    [APPDelegate loginInit];
 }
 
 - (void)didReceiveMemoryWarning {

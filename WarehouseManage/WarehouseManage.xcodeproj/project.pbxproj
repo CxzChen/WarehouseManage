@@ -1840,7 +1840,7 @@
 				TargetAttributes = {
 					2895719D1F4682660080A1C9 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = LP4BVW9XJN;
+						DevelopmentTeam = 846FVZ4CCA;
 						ProvisioningStyle = Automatic;
 					};
 					289571B61F4682680080A1C9 = {
@@ -2266,7 +2266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LP4BVW9XJN;
+				DEVELOPMENT_TEAM = 846FVZ4CCA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries/QQ",
@@ -2290,7 +2290,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bodai.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = bodail.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2302,7 +2302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LP4BVW9XJN;
+				DEVELOPMENT_TEAM = 846FVZ4CCA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries/QQ",
@@ -2326,7 +2326,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bodai.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = bodail.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

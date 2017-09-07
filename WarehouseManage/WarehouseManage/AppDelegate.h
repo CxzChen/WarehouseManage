@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *nav;
 - (void)mainInit;
+- (void)loginInit;
 @end
 
