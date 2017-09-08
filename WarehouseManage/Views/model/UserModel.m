@@ -44,21 +44,6 @@
 
 @end
 
-@implementation RealNameModelDB
-+ (NSString *)getPrimaryKey{
-    return @"username";
-}
-@end
-@implementation RealNameModel
-
-@end
-@implementation CompanyAuthModelDB
-
-@end
-@implementation CompanyAuthModel
-
-@end
-
 @implementation AuthAreaListModel
 
 @end
