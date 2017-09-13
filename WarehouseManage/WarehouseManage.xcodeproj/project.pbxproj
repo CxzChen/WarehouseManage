@@ -2290,7 +2290,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bodail.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = zhchen.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2326,7 +2326,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/SocialLibraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = bodail.WarehouseManage;
+				PRODUCT_BUNDLE_IDENTIFIER = zhchen.WarehouseManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

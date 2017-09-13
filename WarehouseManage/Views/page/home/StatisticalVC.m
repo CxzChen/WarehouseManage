@@ -154,7 +154,7 @@
     [btnStart addTarget:self action:@selector(startAction:) forControlEvents:UIControlEventTouchUpInside];
     [vH addSubview:btnStart];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame: CGRectMake(CGRectGetMaxX(btnStart.frame)+3, CGRectGetMinY(btnStart.frame), 16, 40)];
+    UILabel *lbl = [[UILabel alloc] initWithFrame: CGRectMake(CGRectGetMaxX(btnStart.frame)+3, CGRectGetMinY(btnStart.frame), 17, 40)];
     lbl.text = @"至";
     lbl.textColor = RGBHex(kColorGray203);
     [vH addSubview:lbl];
@@ -173,21 +173,21 @@
     UIView *vSp = [[UIView alloc] initWithFrame:CGRectMake(0, 40, APP_W, 0.5)];
     vSp.backgroundColor = RGBHex(kColorGray206);
     [vH addSubview:vSp];
-    UIView *vSp2 = [[UIView alloc] initWithFrame:CGRectMake(0, 79.5, APP_W, 0.5)];
-    vSp2.backgroundColor = RGBHex(kColorGray206);
-    [vH addSubview:vSp2];
-    UIButton *btnAll = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnAll.frame = CGRectMake(15, CGRectGetMaxY(vSp.frame), APP_W-30, 40);
-    [btnAll setTitle:@"全选" forState:UIControlStateNormal];
-    [btnAll setTitleColor:RGBHex(kColorGray203) forState:UIControlStateNormal];
-    [btnAll addTarget:self action:@selector(allAction:) forControlEvents:UIControlEventTouchUpInside];
-     [vH addSubview:btnAll];
+//    UIView *vSp2 = [[UIView alloc] initWithFrame:CGRectMake(0, 79.5, APP_W, 0.5)];
+//    vSp2.backgroundColor = RGBHex(kColorGray206);
+//    [vH addSubview:vSp2];
+//    UIButton *btnAll = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btnAll.frame = CGRectMake(15, CGRectGetMaxY(vSp.frame), APP_W-30, 40);
+//    [btnAll setTitle:@"全选" forState:UIControlStateNormal];
+//    [btnAll setTitleColor:RGBHex(kColorGray203) forState:UIControlStateNormal];
+//    [btnAll addTarget:self action:@selector(allAction:) forControlEvents:UIControlEventTouchUpInside];
+//     [vH addSubview:btnAll];
     
     return vH;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80;
+    return 40;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
