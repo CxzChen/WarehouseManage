@@ -2275,7 +2275,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/JPUSHService_2.1.9",
 				);
-				GCC_PREFIX_HEADER = /Users/zhchen/Desktop/WarehouseManage/Common/module/config/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/module/config/PrefixHeader.pch";
 				INFOPLIST_FILE = WarehouseManage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2311,7 +2311,7 @@
 					"$(PROJECT_DIR)/Common/module/3rd/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/Common/module/3rd/JPUSHService_2.1.9",
 				);
-				GCC_PREFIX_HEADER = /Users/zhchen/Desktop/WarehouseManage/Common/module/config/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/module/config/PrefixHeader.pch";
 				INFOPLIST_FILE = WarehouseManage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
